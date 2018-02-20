@@ -1,5 +1,18 @@
 package go_sportradar_football
 
+type DailyResult struct {
+	Meta
+	Results []struct {
+		SportEvent       SportEvent       `json:"sport_event"`
+		SportEventStatus SportEventStatus `json:"sport_event_status"`
+	} `json:"results"`
+}
+
+type DailySchedule struct {
+	Meta
+	SportEvent []SportEvent `json:"sport_events"`
+}
+
 type Schedule struct {
 	Meta
 	Tournament Tournament `json:"tournament"`
@@ -23,7 +36,7 @@ type Competitor struct {
 
 type Venue struct {
 	Id             string `json:"id"`
-	Name           string `json:"string"`
+	Name           string `json:"name"`
 	Capacity       int    `json:"capacity"`
 	CityName       string `json:"city_name"`
 	CountryName    string `json:"country_name"`

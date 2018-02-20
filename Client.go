@@ -15,6 +15,10 @@ const (
 	urlScheduleForTournaments = "/tournaments/%s/schedule.json"
 	urlSeasons                = "/tournaments/%s/seasons.json"
 	urlMatchSummary           = "/matches/%s/summary.json"
+	urlMatchesLineup          = "/matches/%s/lineups.json"
+	urlTeam                   = "/teams/%s/profile.json"
+	urlDailySchedules         = "/schedules/%s/schedule.json"
+	urlDailyResults           = "/schedules/%s/results.json"
 )
 
 type Client struct {
@@ -27,9 +31,96 @@ func (c *Client) Init(token string, lang string) {
 	c.lang = lang
 }
 
-func (c *Client) GetDetailMatch(id string) (MatchSummary,  error) {
+func (c *Client) GetDailySchedule(date string) (DailySchedule, error) {
 	var (
-		res MatchSummary
+		res  DailySchedule
+		url  string
+		err  error
+		body []byte
+	)
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlDailySchedules, date), c.token)
+
+	if body, err = c.getUrl(url); err != nil {
+		return DailySchedule{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return DailySchedule{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetDailyResult(date string) (DailyResult, error) {
+	var (
+		res  DailyResult
+		url  string
+		err  error
+		body []byte
+	)
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlDailyResults, date), c.token)
+
+	if body, err = c.getUrl(url); err != nil {
+		return DailyResult{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return DailyResult{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetTeamProfile(id string) (TeamProfile, error) {
+	var (
+		res  TeamProfile
+		url  string
+		err  error
+		body []byte
+	)
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlTeam, id), c.token)
+
+	if body, err = c.getUrl(url); err != nil {
+		return TeamProfile{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return TeamProfile{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetMatchLineups(id string) (MatchLineups, error) {
+
+	var (
+		res  MatchLineups
+		url  string
+		err  error
+		body []byte
+	)
+
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlMatchesLineup, id), c.token)
+
+	fmt.Println(url)
+	if body, err = c.getUrl(url); err != nil {
+		return MatchLineups{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return MatchLineups{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetDetailMatch(id string) (MatchSummary, error) {
+	var (
+		res  MatchSummary
 		url  string
 		err  error
 		body []byte
@@ -46,7 +137,6 @@ func (c *Client) GetDetailMatch(id string) (MatchSummary,  error) {
 	}
 
 	return res, nil
-
 }
 
 func (c *Client) GetSeasons(id string) (TournamentSeason, error) {

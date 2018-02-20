@@ -19,3 +19,10 @@ type TeamStanding struct {
 	GoalDiff       int    `json:"goal_diff"`
 	Points         int    `json:"points"`
 }
+
+type TeamProfile struct {
+	Team     Team     `json:"team"`
+	Category Category `json:"category"`
+	Venue    Venue    `json:"venue"`
+	Players  []Player `json:"players"`
+}

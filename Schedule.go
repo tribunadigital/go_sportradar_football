@@ -27,7 +27,7 @@ type TournamentRound struct {
 }
 
 type Competitor struct {
-	Team
+	BaseTeam
 	Country      string `json:"country"`
 	CountryCode  string `json:"country_code"`
 	Abbreviation string `json:"abbreviation"`

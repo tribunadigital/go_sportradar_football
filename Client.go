@@ -128,6 +128,8 @@ func (c *Client) GetDetailMatch(id string) (MatchSummary, error) {
 
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlMatchSummary, id), c.token)
+
+	fmt.Println(url)
 	if body, err = c.getUrl(url); err != nil {
 		return MatchSummary{}, err
 	}
@@ -149,6 +151,8 @@ func (c *Client) GetSeasons(id string) (TournamentSeason, error) {
 
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlSeasons, id), c.token)
+
+	fmt.Println(url)
 
 	if body, err = c.getUrl(url); err != nil {
 		return TournamentSeason{}, err

@@ -16,7 +16,7 @@ type MatchSummary struct {
 	} `json:"sport_event_conditions"`
 	SportEventStatus SportEventStatus `json:"sport_event_status"`
 	Statistics struct {
-		Teams []Team `json:"teams"`
+		Teams []BaseTeam `json:"teams"`
 	} `json:"statistics"`
 }
 

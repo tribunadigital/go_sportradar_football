@@ -1,10 +1,10 @@
 package go_sportradar_football
 
 type BasePlayer struct {
-	Id            string `json:"id"`
-	Name          string `json:"name"`
-	Type          string `json:"type"`
-	JerseyNumber  int    `json:"jersey_number"`
+	Id           string `json:"id"`
+	Name         string `json:"name"`
+	Type         string `json:"type"`
+	JerseyNumber int    `json:"jersey_number"`
 }
 
 type Player struct {
@@ -16,4 +16,20 @@ type Player struct {
 	Weight        int    `json:"weight"`
 	PreferredFoot string `json:"preferred_foot"`
 	Gender        string `json:"gender"`
+}
+
+type Role struct {
+	Type         string     `json:"type"`
+	Active       string     `json:"active"`
+	Team         DetailTeam `json:"team"`
+	StartDate    string     `json:"start_date"`
+	EndDate      string     `json:"end_date"`
+	JerseyNumber int        `json:"jersey_number"`
+}
+
+type PlayerProfile struct {
+	Meta
+	Player Player       `json:"player"`
+	Teams  []DetailTeam `json:"teams"`
+	Roles  []Role       `json:"roles"`
 }

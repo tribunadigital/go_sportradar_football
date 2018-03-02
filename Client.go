@@ -9,7 +9,7 @@ import (
 )
 
 const (
-	baseUrl                   = "https://api.sportradar.us/soccer-t3/"
+	baseUrl                   = "https://api.sportradar.us/soccer-p3/"
 	urlTournaments            = "/tournaments.json"
 	urlTournamentStanding     = "/tournaments/%s/standings.json"
 	urlScheduleForTournaments = "/tournaments/%s/schedule.json"
@@ -19,6 +19,7 @@ const (
 	urlTeam                   = "/teams/%s/profile.json"
 	urlDailySchedules         = "/schedules/%s/schedule.json"
 	urlDailyResults           = "/schedules/%s/results.json"
+	urlPlayerProfile          = "/players/%s/profile.json"
 )
 
 type Client struct {
@@ -68,6 +69,27 @@ func (c *Client) GetDailyResult(date string) (DailyResult, error) {
 
 	if err = json.Unmarshal(body, &res); err != nil {
 		return DailyResult{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetPlayerProfile(id string) (PlayerProfile, error) {
+	var (
+		res  PlayerProfile
+		url  string
+		err  error
+		body []byte
+	)
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlPlayerProfile, id), c.token)
+
+	if body, err = c.getUrl(url); err != nil {
+		return PlayerProfile{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return PlayerProfile{}, err
 	}
 
 	return res, nil

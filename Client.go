@@ -6,6 +6,7 @@ import (
 	"errors"
 	"encoding/json"
 	"io/ioutil"
+	"strconv"
 )
 
 const (
@@ -23,13 +24,15 @@ const (
 )
 
 type Client struct {
-	token string
-	lang  string
+	token     string
+	lang      string
+	LastQuery HttpLog
 }
 
 func (c *Client) Init(token string, lang string) {
 	c.token = token
 	c.lang = lang
+	c.LastQuery = HttpLog{}
 }
 
 func (c *Client) GetDailySchedule(date string) (DailySchedule, error) {
@@ -102,6 +105,7 @@ func (c *Client) GetTeamProfile(id string) (TeamProfile, error) {
 		err  error
 		body []byte
 	)
+
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlTeam, id), c.token)
 
@@ -223,6 +227,8 @@ func (c *Client) GetTournamentStanding(id string) (TournamentStanding, error) {
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlTournamentStanding, id), c.token)
 
+	fmt.Println(url)
+
 	if body, err = c.getUrl(url); err != nil {
 		return TournamentStanding{}, err
 	}
@@ -256,6 +262,9 @@ func (c *Client) GetTournaments() (TournamentsResult, error) {
 }
 
 func (c *Client) getUrl(url string) ([]byte, error) {
+
+	c.LastQuery.Request = url
+
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, err
@@ -265,6 +274,9 @@ func (c *Client) getUrl(url string) ([]byte, error) {
 	if err != nil {
 		return nil, err
 	}
+
+	c.LastQuery.Response = string(body[:])
+	c.LastQuery.CodeStatus = strconv.Itoa(resp.StatusCode)
 
 	if resp.StatusCode != 200 {
 		return nil, errors.New(fmt.Sprintf("API refused with code %v", resp.Status))

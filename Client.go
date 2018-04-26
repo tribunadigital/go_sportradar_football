@@ -20,6 +20,7 @@ const (
 	urlTeam                   = "/teams/%s/profile.json"
 	urlDailySchedules         = "/schedules/%s/schedule.json"
 	urlDailyResults           = "/schedules/%s/results.json"
+	urlLiveResults            = "/schedules/live/results.json"
 	urlPlayerProfile          = "/players/%s/profile.json"
 )
 
@@ -56,6 +57,29 @@ func (c *Client) GetDailySchedule(date string) (DailySchedule, error) {
 	return res, nil
 }
 
+func (c *Client) GetLiveResult() (LiveResult, error) {
+	var (
+		res  LiveResult
+		url  string
+		err  error
+		body []byte
+	)
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		urlLiveResults, c.token)
+
+	fmt.Println(url)
+
+	if body, err = c.getUrl(url); err != nil {
+		return LiveResult{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return LiveResult{}, err
+	}
+
+	return res, nil
+}
+
 func (c *Client) GetDailyResult(date string) (DailyResult, error) {
 	var (
 		res  DailyResult
@@ -65,6 +89,8 @@ func (c *Client) GetDailyResult(date string) (DailyResult, error) {
 	)
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlDailyResults, date), c.token)
+
+	fmt.Println(url)
 
 	if body, err = c.getUrl(url); err != nil {
 		return DailyResult{}, err

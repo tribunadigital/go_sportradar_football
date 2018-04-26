@@ -8,6 +8,14 @@ type DailyResult struct {
 	} `json:"results"`
 }
 
+type LiveResult struct {
+	Meta
+	Results []struct {
+		SportEvent       SportEvent       `json:"sport_event"`
+		SportEventStatus SportEventStatus `json:"sport_event_status"`
+	} `json:"results"`
+}
+
 type DailySchedule struct {
 	Meta
 	SportEvent []SportEvent `json:"sport_events"`

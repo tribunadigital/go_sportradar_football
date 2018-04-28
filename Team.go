@@ -33,6 +33,6 @@ type TeamProfile struct {
 	Venue   Venue    `json:"venue"`
 	Players []Player `json:"players"`
 	Statistics struct {
-		Seasons []SeasonStat `json:"statistics"`
+		Seasons []SeasonStat `json:"seasons"`
 	} `json:"statistics"`
 }

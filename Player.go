@@ -19,12 +19,14 @@ type Player struct {
 }
 
 type Role struct {
-	Type         string     `json:"type"`
-	Active       string     `json:"active"`
-	Team         DetailTeam `json:"team"`
-	StartDate    string     `json:"start_date"`
-	EndDate      string     `json:"end_date"`
-	JerseyNumber int        `json:"jersey_number"`
+	Type          string     `json:"type"`
+	Active        string     `json:"active"`
+	Team          DetailTeam `json:"team"`
+	StartDate     string     `json:"start_date"`
+	EndDate       string     `json:"end_date"`
+	JerseyNumber  int        `json:"jersey_number"`
+	PreferredFoot string     `json:"preferred_foot"`
+	Gender        string     `json:"gender"`
 }
 
 type PlayerProfile struct {

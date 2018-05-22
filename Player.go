@@ -9,6 +9,8 @@ type BasePlayer struct {
 
 type Player struct {
 	BasePlayer
+	FirstName     string `json:"first_name"`
+	LastName      string `json:"last_name"`
 	DateOfBirth   string `json:"date_of_birth"`
 	Nationality   string `json:"nationality"`
 	CountryCode   string `json:"country_code"`

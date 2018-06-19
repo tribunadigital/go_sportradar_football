@@ -26,7 +26,7 @@ type Role struct {
 	Team          DetailTeam `json:"team"`
 	StartDate     string     `json:"start_date"`
 	EndDate       string     `json:"end_date"`
-	JerseyNumber  string     `json:"jersey_number"`
+	JerseyNumber  int     `json:"jersey_number"`
 	PreferredFoot string     `json:"preferred_foot"`
 	Gender        string     `json:"gender"`
 }

@@ -17,7 +17,6 @@ type TeamStanding struct {
 	Team           BaseTeam `json:"team"`
 	Rank           int      `json:"rank"`
 	CurrentOutcome string   `json:"current_outcome"`
-	GroupName      string   `json:"group_name"`
 	Played         int      `json:"played"`
 	Win            int      `json:"win"`
 	Draw           int      `json:"draw"`

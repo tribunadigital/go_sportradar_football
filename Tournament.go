@@ -20,13 +20,13 @@ type TournamentSeason struct {
 }
 
 type Group struct {
-	Name string
+	Name         string         `json:"name"`
 	TeamStanding []TeamStanding `json:"team_standings"`
 }
 
 type Standing struct {
-	TieBreakRule string `json:"tie_break_rule"`
-	Type         string `json:"type"`
+	TieBreakRule string  `json:"tie_break_rule"`
+	Type         string  `json:"type"`
 	Group        []Group `json:"groups"`
 }
 

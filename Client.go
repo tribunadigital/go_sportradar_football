@@ -12,6 +12,7 @@ import (
 const (
 	baseUrl                   = "https://api.sportradar.us/soccer-p3/"
 	urlTournaments            = "/tournaments.json"
+	urlInfoTournament         = "/tournaments/%s/info.json"
 	urlTournamentStanding     = "/tournaments/%s/standings.json"
 	urlScheduleForTournaments = "/tournaments/%s/schedule.json"
 	urlSeasons                = "/tournaments/%s/seasons.json"
@@ -237,6 +238,30 @@ func (c *Client) GetScheduleForTournament(id string) (Schedule, error) {
 
 	if err = json.Unmarshal(body, &res); err != nil {
 		return Schedule{}, err
+	}
+
+	return res, nil
+}
+
+func (c *Client) GetTournamentInfo(id string) (TournamentInfo, error) {
+	var (
+		url  string
+		res  TournamentInfo
+		err  error
+		body []byte
+	)
+
+	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlInfoTournament, id), c.token)
+
+	fmt.Println(url)
+
+	if body, err = c.getUrl(url); err != nil {
+		return TournamentInfo{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return TournamentInfo{}, err
 	}
 
 	return res, nil

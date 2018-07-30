@@ -36,3 +36,9 @@ type TournamentStanding struct {
 	Season   Season     `json:"season"`
 	Standing []Standing `json:"standings"`
 }
+
+type TournamentInfo struct {
+	Meta
+	Tournament Tournament `json:"tournament"`
+	Season     Season     `json:"season"`
+}

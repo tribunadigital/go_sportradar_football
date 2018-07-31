@@ -26,7 +26,7 @@ type Role struct {
 	Team          DetailTeam `json:"team"`
 	StartDate     string     `json:"start_date"`
 	EndDate       string     `json:"end_date"`
-	JerseyNumber  int     `json:"jersey_number"`
+	JerseyNumber  int        `json:"jersey_number"`
 	PreferredFoot string     `json:"preferred_foot"`
 	Gender        string     `json:"gender"`
 }
@@ -36,4 +36,26 @@ type PlayerProfile struct {
 	Player Player       `json:"player"`
 	Teams  []DetailTeam `json:"teams"`
 	Roles  []Role       `json:"roles"`
+	Statistics struct {
+		Seasons []struct {
+			Id         string           `json:"id"`
+			Name       string           `json:"name"`
+			Team       DetailTeam       `json:"team"`
+			Tournament Tournament       `json:"tournament"`
+			Statistics PlayerSeasonStat `json:"statistics"`
+		} `json:"seasons"`
+		Total PlayerSeasonStat `json:"total"`
+	} `json:"statistics"`
+}
+
+type PlayerSeasonStat struct {
+	MatchesPlayed  int    `json:"matches_played"`
+	SubstitutedIn  int    `json:"substituted_in"`
+	GoalScored     int    `json:"goal_scored"`
+	Assists        int    `json:"assists"`
+	OwnGoals       int    `json:"own_goals"`
+	YellowCards    int    `json:"yellow_cards"`
+	YellowRedCards int    `json:"yellow_red_cards"`
+	RedCards       int    `json:"red_cards"`
+	LastEventTime  string `json:"last_event_time"`
 }

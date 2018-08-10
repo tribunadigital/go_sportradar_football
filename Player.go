@@ -51,7 +51,7 @@ type PlayerProfile struct {
 type PlayerSeasonStat struct {
 	MatchesPlayed  int    `json:"matches_played"`
 	SubstitutedIn  int    `json:"substituted_in"`
-	GoalScored     int    `json:"goal_scored"`
+	GoalScored     int    `json:"goals_scored"`
 	Assists        int    `json:"assists"`
 	OwnGoals       int    `json:"own_goals"`
 	YellowCards    int    `json:"yellow_cards"`

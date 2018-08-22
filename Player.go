@@ -7,13 +7,17 @@ type BasePlayer struct {
 	JerseyNumber int    `json:"jersey_number"`
 }
 
+type BaseNational struct {
+	Nationality string `json:"nationality"`
+	CountryCode string `json:"country_code"`
+}
+
 type Player struct {
 	BasePlayer
 	FirstName     string `json:"first_name"`
 	LastName      string `json:"last_name"`
 	DateOfBirth   string `json:"date_of_birth"`
-	Nationality   string `json:"nationality"`
-	CountryCode   string `json:"country_code"`
+	BaseNational
 	Height        int    `json:"height"`
 	Weight        int    `json:"weight"`
 	PreferredFoot string `json:"preferred_foot"`

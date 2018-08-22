@@ -6,6 +6,81 @@ type MatchLineups struct {
 	Lineups    []Lineups  `json:"lineups"`
 }
 
+type MatchTimeline struct {
+	Meta
+	SportEvent          SportEvent          `json:"sport_event"`
+	SportEventCondition SportEventCondition `json:"sport_event_conditions"`
+	SportEventStatus    SportEventStatus    `json:"sport_event_status"`
+	Timeline            []TimeLineEvent     `json:"timeline"`
+	Statistics struct {
+		Teams []struct {
+			BaseTeam
+			Abbreviation string `json:"abbreviation"`
+			Qualifier    string `json:"qualifier"`
+
+			Statistics struct {
+				BallPossession int `json:"ball_possession"`
+				ThrowIns       int `json:"throw_ins"`
+				FreeKicks      int `json:"free_kicks"`
+				GoalKicks      int `json:"goal_kicks"`
+				Fouls          int `json:"fouls"`
+				ShotsOnTarget  int `json:"shots_on_target"`
+				Offsides       int `json:"offsides"`
+				CornerKicks    int `json:"corner_kicks"`
+				ShotsSaved     int `json:"shots_saved"`
+				ShotsBlocked   int `json:"shots_blocked"`
+				ShotsOffTarget int `json:"shots_off_target"`
+				YellowCards    int `json:"yellow_cards"`
+				Injuries       int `json:"injuries"`
+			} `json:"statistics"`
+			Players []struct {
+				Id             string `json:"id"`
+				Name           string `json:"name"`
+				SubstitutedIn  int    `json:"substituted_in"`
+				SubstitutedOut int    `json:"substituted_out"`
+				GoalsScored    int    `json:"goals_scored"`
+				Assists        int    `json:"assists"`
+				OwnGoals       int    `json:"own_goals"`
+				YellowCards    int    `json:"yellow_cards"`
+				YellowRedCards int    `json:"yellow_red_cards"`
+				RedCards       int    `json:"red_cards"`
+			} `json:"players"`
+		} `json:"teams"`
+	} `json:"statistics"`
+}
+
+type TimelinePlayer struct {
+	Id   string  `json:"id"`
+	Name string  `json:"name"`
+	Type *string `json:"type"`
+}
+
+type TimeLineEvent struct {
+	Id                int             `json:"id"`
+	Type              string          `json:"type"`
+	Time              string          `json:"time"`
+	PeriodName        *string         `json:"period_name"`
+	MatchTime         *int            `json:"match_time"`
+	MatchClock        *string         `json:"match_clock"`
+	Team              *string         `json:"team"`
+	X                 *int            `json:"x"`
+	Y                 *int            `json:"y"`
+	HomeScore         *int            `json:"home_score"`
+	AwayScore         *int            `json:"away_score"`
+	ShootoutHomeScore *int            `json:"shootout_home_score"`
+	ShootoutAwayScore *int            `json:"shootout_away_score"`
+	Period            *int            `json:"period"`
+	PeriodType        *string         `json:"period_type"`
+	Status            *string         `json:"status"`
+	StoppageTime      *string         `json:"stoppage_time"`
+	Outcome           *string         `json:"outcome"`
+	GoalScorer        *TimelinePlayer `json:"goal_scorer"`
+	Assist            *TimelinePlayer `json:"assist"`
+	Player            *TimelinePlayer `json:"player"`
+	PlayerOut         *TimelinePlayer `json:"player_out"`
+	PlayerIn          *TimelinePlayer `json:"player_in"`
+}
+
 type MatchSummary struct {
 	Meta
 	SportEvent SportEvent `json:"sport_event"`
@@ -54,10 +129,9 @@ type Lineups struct {
 	Team      string `json:"team"`
 	Formation string `json:"formation"`
 	Manager struct {
-		Id          string `json:"id"`
-		Name        string `json:"name"`
-		Nationality string `json:"nationality"`
-		CountryCode string `json:"country_code"`
+		Id   string `json:"id"`
+		Name string `json:"name"`
+		BaseNational
 	} `json:"manager"`
 	Jersey struct {
 		Type              string `json:"type"`

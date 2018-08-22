@@ -18,6 +18,7 @@ const (
 	urlSeasons                = "/tournaments/%s/seasons.json"
 	urlMatchSummary           = "/matches/%s/summary.json"
 	urlMatchesLineup          = "/matches/%s/lineups.json"
+	urlMatchesTimeline        = "/matches/%s/timeline.json"
 	urlTeam                   = "/teams/%s/profile.json"
 	urlDailySchedules         = "/schedules/%s/schedule.json"
 	urlDailyResults           = "/schedules/%s/results.json"
@@ -170,6 +171,30 @@ func (c *Client) GetMatchLineups(id string) (MatchLineups, error) {
 
 	return res, nil
 }
+
+func (c *Client) GetMatchTimeline(id string) (MatchTimeline, error) {
+
+	var (
+		res  MatchTimeline
+		err  error
+		body []byte
+	)
+
+	url := fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
+		fmt.Sprintf(urlMatchesTimeline, id), c.token)
+
+	fmt.Println(url)
+	if body, err = c.getUrl(url); err != nil {
+		return MatchTimeline{}, err
+	}
+
+	if err = json.Unmarshal(body, &res); err != nil {
+		return MatchTimeline{}, err
+	}
+
+	return res, nil
+}
+
 
 func (c *Client) GetDetailMatch(id string) (MatchSummary, error) {
 	var (

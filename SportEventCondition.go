@@ -5,7 +5,7 @@ type SportEventCondition struct {
 	RefereeAssistants []struct {
 		Type string `json:"type"`
 		Referee
-	}
+	} `json:"referee_assistants"`
 	Venue       Venue `json:"venue"`
 	Attendance  int   `json:"attendance"`
 	WeatherInfo struct {

@@ -12,7 +12,7 @@ type MatchTimeline struct {
 	SportEventCondition SportEventCondition `json:"sport_event_conditions"`
 	SportEventStatus    SportEventStatus    `json:"sport_event_status"`
 	Timeline            []TimeLineEvent     `json:"timeline"`
-	Statistics struct {
+	Statistics          struct {
 		Teams []struct {
 			BaseTeam
 			Abbreviation string `json:"abbreviation"`
@@ -34,16 +34,9 @@ type MatchTimeline struct {
 				Injuries       int `json:"injuries"`
 			} `json:"statistics"`
 			Players []struct {
-				Id             string `json:"id"`
-				Name           string `json:"name"`
-				SubstitutedIn  int    `json:"substituted_in"`
-				SubstitutedOut int    `json:"substituted_out"`
-				GoalsScored    int    `json:"goals_scored"`
-				Assists        int    `json:"assists"`
-				OwnGoals       int    `json:"own_goals"`
-				YellowCards    int    `json:"yellow_cards"`
-				YellowRedCards int    `json:"yellow_red_cards"`
-				RedCards       int    `json:"red_cards"`
+				Id   string `json:"id"`
+				Name string `json:"name"`
+				PlayerStatistics
 			} `json:"players"`
 		} `json:"teams"`
 	} `json:"statistics"`
@@ -83,14 +76,14 @@ type TimeLineEvent struct {
 
 type MatchSummary struct {
 	Meta
-	SportEvent SportEvent `json:"sport_event"`
+	SportEvent           SportEvent `json:"sport_event"`
 	SportEventConditions struct {
 		//Referee
 		Venue      Venue `json:"venue"`
 		Attendance int   `json:"attendance"`
 	} `json:"sport_event_conditions"`
 	SportEventStatus SportEventStatus `json:"sport_event_status"`
-	Statistics struct {
+	Statistics       struct {
 		Teams []BaseTeam `json:"teams"`
 	} `json:"statistics"`
 }
@@ -128,7 +121,7 @@ type SportEventStatus struct {
 type Lineups struct {
 	Team      string `json:"team"`
 	Formation string `json:"formation"`
-	Manager struct {
+	Manager   struct {
 		Id   string `json:"id"`
 		Name string `json:"name"`
 		BaseNational

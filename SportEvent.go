@@ -15,25 +15,10 @@ type MatchTimeline struct {
 	Statistics          struct {
 		Teams []struct {
 			BaseTeam
-			Abbreviation string `json:"abbreviation"`
-			Qualifier    string `json:"qualifier"`
-
-			Statistics struct {
-				BallPossession int `json:"ball_possession"`
-				ThrowIns       int `json:"throw_ins"`
-				FreeKicks      int `json:"free_kicks"`
-				GoalKicks      int `json:"goal_kicks"`
-				Fouls          int `json:"fouls"`
-				ShotsOnTarget  int `json:"shots_on_target"`
-				Offsides       int `json:"offsides"`
-				CornerKicks    int `json:"corner_kicks"`
-				ShotsSaved     int `json:"shots_saved"`
-				ShotsBlocked   int `json:"shots_blocked"`
-				ShotsOffTarget int `json:"shots_off_target"`
-				YellowCards    int `json:"yellow_cards"`
-				Injuries       int `json:"injuries"`
-			} `json:"statistics"`
-			Players []struct {
+			Abbreviation string          `json:"abbreviation"`
+			Qualifier    string          `json:"qualifier"`
+			Statistics   MatchStatistics `json:"statistics"`
+			Players      []struct {
 				Id   string `json:"id"`
 				Name string `json:"name"`
 				PlayerStatistics

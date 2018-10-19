@@ -1,23 +1,23 @@
 package go_sportradar_football
 
 type MatchStatistics struct {
-	FreeKicks       string `json:"free_kicks"`
-	Offsides        *int   `json:"offsides"`
-	ShotsOffTarget  *int   `json:"shots_off_target"`
-	CornerKicks     *int   `json:"corner_kicks"`
-	Injuries        *int   `json:"injuries"`
-	ShotsOnTarget   *int   `json:"shots_on_target"`
-	YellowCards     *int   `json:"yellow_cards"`
-	YellowRedCards  *int   `json:"yellow_red_cards"`
-	RedCards        *int   `json:"red_cards"`
-	BallPossession  *int   `json:"ball_possession"`
-	GoalKicks       *int   `json:"goal_kicks"`
-	ThrowIns        *int   `json:"throw_ins"`
-	ShotsSaved      *int   `json:"shots_saved"`
-	Fouls           *int   `json:"fouls"`
-	OwnGoals        *int   `json:"own_goals"`
-	PenaltiesMissed *int   `json:"penalties_missed"`
-	ShotsBlocked    *int   `json:"shots_blocked"`
+	FreeKicks       *int `json:"free_kicks"`
+	Offsides        *int `json:"offsides"`
+	ShotsOffTarget  *int `json:"shots_off_target"`
+	CornerKicks     *int `json:"corner_kicks"`
+	Injuries        *int `json:"injuries"`
+	ShotsOnTarget   *int `json:"shots_on_target"`
+	YellowCards     *int `json:"yellow_cards"`
+	YellowRedCards  *int `json:"yellow_red_cards"`
+	RedCards        *int `json:"red_cards"`
+	BallPossession  *int `json:"ball_possession"`
+	GoalKicks       *int `json:"goal_kicks"`
+	ThrowIns        *int `json:"throw_ins"`
+	ShotsSaved      *int `json:"shots_saved"`
+	Fouls           *int `json:"fouls"`
+	OwnGoals        *int `json:"own_goals"`
+	PenaltiesMissed *int `json:"penalties_missed"`
+	ShotsBlocked    *int `json:"shots_blocked"`
 }
 
 type PlayerStatistics struct {

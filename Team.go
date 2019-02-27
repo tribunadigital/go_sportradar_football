@@ -30,8 +30,8 @@ type TeamStanding struct {
 type TeamProfile struct {
 	Team DetailTeam `json:"team"`
 
-	Venue   Venue    `json:"venue"`
-	Players []Player `json:"players"`
+	Venue      Venue    `json:"venue"`
+	Players    []Player `json:"players"`
 	Statistics struct {
 		Seasons []SeasonStat `json:"seasons"`
 	} `json:"statistics"`

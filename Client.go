@@ -1,11 +1,11 @@
 package go_sportradar_football
 
 import (
-	"fmt"
-	"net/http"
-	"errors"
 	"encoding/json"
+	"errors"
+	"fmt"
 	"io/ioutil"
+	"net/http"
 	"strconv"
 )
 
@@ -194,7 +194,6 @@ func (c *Client) GetMatchTimeline(id string) (MatchTimeline, error) {
 
 	return res, nil
 }
-
 
 func (c *Client) GetDetailMatch(id string) (MatchSummary, error) {
 	var (

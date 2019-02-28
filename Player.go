@@ -14,9 +14,9 @@ type BaseNational struct {
 
 type Player struct {
 	BasePlayer
-	FirstName     string `json:"first_name"`
-	LastName      string `json:"last_name"`
-	DateOfBirth   string `json:"date_of_birth"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
+	DateOfBirth string `json:"date_of_birth"`
 	BaseNational
 	Height        int    `json:"height"`
 	Weight        int    `json:"weight"`
@@ -37,9 +37,9 @@ type Role struct {
 
 type PlayerProfile struct {
 	Meta
-	Player Player       `json:"player"`
-	Teams  []DetailTeam `json:"teams"`
-	Roles  []Role       `json:"roles"`
+	Player     Player       `json:"player"`
+	Teams      []DetailTeam `json:"teams"`
+	Roles      []Role       `json:"roles"`
 	Statistics struct {
 		Seasons []struct {
 			Id         string           `json:"id"`

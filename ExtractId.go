@@ -1,13 +1,10 @@
 package go_sportradar_football
 
-
 import (
-	"strings"
-	"strconv"
 	"errors"
+	"strconv"
+	"strings"
 )
-
-
 
 func ExtractId(str string) (int, error) {
 	split := strings.Split(str, ":")

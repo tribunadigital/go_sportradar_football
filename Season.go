@@ -9,8 +9,8 @@ type Season struct {
 }
 
 type SeasonStat struct {
-	Id   string `json:"id"`
-	Name string `json:"name"`
+	Id         string `json:"id"`
+	Name       string `json:"name"`
 	Statistics struct {
 		MatchesPlayed int    `json:"matches_played"`
 		MatchesWon    int    `json:"matches_won"`
@@ -23,7 +23,7 @@ type SeasonStat struct {
 		GroupName     string `json:"group_name"`
 	} `json:"statistics"`
 	Tournament Tournament `json:"tournament"`
-	Form struct {
+	Form       struct {
 		Total string `json:"total"`
 		Home  string `json:"home"`
 		Away  string `json:"away"`

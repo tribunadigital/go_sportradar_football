@@ -28,9 +28,10 @@ type MatchTimeline struct {
 }
 
 type TimelinePlayer struct {
-	Id   string  `json:"id"`
-	Name string  `json:"name"`
-	Type *string `json:"type"`
+	Id     string  `json:"id"`
+	Name   string  `json:"name"`
+	Type   *string `json:"type"`
+	Method *string `json:"method"`
 }
 
 type TimeLineEvent struct {

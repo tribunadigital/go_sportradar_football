@@ -15,8 +15,8 @@ type TournamentsResult struct {
 
 type TournamentSeason struct {
 	Meta
-	Tournament       `json:"tournament"`
-	Seasons []Season `json:"seasons"`
+	Tournament `json:"tournament"`
+	Seasons    []Season `json:"seasons"`
 }
 
 type Group struct {
@@ -32,9 +32,9 @@ type Standing struct {
 
 type TournamentStanding struct {
 	Meta
-	Tournament          `json:"tournament"`
-	Season   Season     `json:"season"`
-	Standing []Standing `json:"standings"`
+	Tournament `json:"tournament"`
+	Season     Season     `json:"season"`
+	Standing   []Standing `json:"standings"`
 }
 
 type TournamentInfo struct {

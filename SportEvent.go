@@ -8,7 +8,7 @@ type MatchLineups struct {
 
 type CoverageInfo struct {
 	Level        string `json:"level"`
-	LiveCoverage string `json:"live_coverage"`
+	LiveCoverage bool   `json:"live_coverage"`
 	Coverage     struct {
 		BasicScore     *bool `json:"basic_score"`
 		KeyEvents      *bool `json:"key_events"`

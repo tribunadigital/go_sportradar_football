@@ -48,6 +48,7 @@ func (c *Client) GetDailySchedule(date string) (DailySchedule, error) {
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlDailySchedules, date), c.token)
 
+	fmt.Println(url)
 	if body, err = c.getUrl(url); err != nil {
 		return DailySchedule{}, err
 	}
@@ -92,8 +93,6 @@ func (c *Client) GetDailyResult(date string) (DailyResult, error) {
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlDailyResults, date), c.token)
 
-	fmt.Println(url)
-
 	if body, err = c.getUrl(url); err != nil {
 		return DailyResult{}, err
 	}
@@ -115,6 +114,7 @@ func (c *Client) GetPlayerProfile(id string) (PlayerProfile, error) {
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlPlayerProfile, id), c.token)
 
+	fmt.Println(url)
 	if body, err = c.getUrl(url); err != nil {
 		return PlayerProfile{}, err
 	}

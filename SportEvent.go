@@ -6,24 +6,26 @@ type MatchLineups struct {
 	Lineups    []Lineups  `json:"lineups"`
 }
 
+type CoverageInfo struct {
+	Level        string `json:"level"`
+	LiveCoverage string `json:"live_coverage"`
+	Coverage     struct {
+		BasicScore     *bool `json:"basic_score"`
+		KeyEvents      *bool `json:"key_events"`
+		DetailedEvents *bool `json:"detailed_events"`
+		Lineups        *bool `json:"lineups"`
+		Commentary     *bool `json:"commentary"`
+	} `json:"coverage"`
+}
+
 type MatchTimeline struct {
 	Meta
 	SportEvent          SportEvent          `json:"sport_event"`
 	SportEventCondition SportEventCondition `json:"sport_event_conditions"`
 	SportEventStatus    SportEventStatus    `json:"sport_event_status"`
-	CoverageInfo        struct {
-		Level        string `json:"level"`
-		LiveCoverage string `json:"live_coverage"`
-		Coverage     struct {
-			BasicScore     bool `json:"basic_score"`
-			KeyEvents      bool `json:"key_events"`
-			DetailedEvents bool `json:"detailed_events"`
-			Lineups        bool `json:"lineups"`
-			Commentary     bool `json:"commentary"`
-		} `json:"coverage"`
-	} `json:"coverage_info"`
-	Timeline   []TimeLineEvent `json:"timeline"`
-	Statistics struct {
+	CoverageInfo        CoverageInfo        `json:"coverage_info"`
+	Timeline            []TimeLineEvent     `json:"timeline"`
+	Statistics          struct {
 		Teams []struct {
 			BaseTeam
 			Abbreviation string          `json:"abbreviation"`

@@ -137,6 +137,7 @@ func (c *Client) GetTeamProfile(id string) (TeamProfile, error) {
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang,
 		fmt.Sprintf(urlTeam, id), c.token)
 
+	fmt.Println(url)
 	if body, err = c.getUrl(url); err != nil {
 		return TeamProfile{}, err
 	}
@@ -324,7 +325,7 @@ func (c *Client) GetTournaments() (TournamentsResult, error) {
 	)
 
 	url = fmt.Sprintf("%s%s%s?api_key=%s", baseUrl, c.lang, urlTournaments, c.token)
-
+	fmt.Println(url)
 	if body, err = c.getUrl(url); err != nil {
 		return TournamentsResult{}, err
 	}
@@ -341,6 +342,10 @@ func (c *Client) getUrl(url string) ([]byte, error) {
 	c.LastQuery.Request = url
 
 	resp, err := http.Get(url)
+	if resp != nil {
+		defer resp.Body.Close()
+	}
+
 	if err != nil {
 		return nil, err
 	}

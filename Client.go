@@ -355,6 +355,11 @@ func (c *Client) getUrl(url string) ([]byte, error) {
 		return nil, err
 	}
 
+	c.LastQuery.QuotaAllotted = resp.Header.Get("x-packagekey-quota-allotted")
+	c.LastQuery.QuotaCurrent = resp.Header.Get("x-packagekey-quota-current")
+	c.LastQuery.QpsCurrent = resp.Header.Get("x-plan-qps-current")
+	c.LastQuery.QpsAllotted = resp.Header.Get("x-plan-qps-allotted")
+
 	c.LastQuery.Response = string(body[:])
 	c.LastQuery.CodeStatus = strconv.Itoa(resp.StatusCode)
 
